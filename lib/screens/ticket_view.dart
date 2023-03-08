@@ -1,3 +1,4 @@
+import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -5,13 +6,15 @@ import 'package:get/get_utils/src/platform/platform.dart';
 import '../utils/app_layout.dart';
 import '../utils/app_styles.dart';
 import '../widgets/column_widget.dart';
+import '../widgets/dash_layout_widget.dart';
 import '../widgets/thick_container.dart';
 
 class TicketView extends StatelessWidget {
   final Map<String, dynamic> ticket;
-  final bool? isColor;
+  final bool? isColor, isDetail;
 
-  const TicketView({Key? key, required this.ticket, this.isColor})
+  const TicketView(
+      {Key? key, required this.ticket, this.isColor, this.isDetail})
       : super(key: key);
 
   @override
@@ -21,7 +24,7 @@ class TicketView extends StatelessWidget {
     return SizedBox(
       /* set dynamic width based on device screen */
       width: size.width * 0.85,
-      height: GetPlatform.isAndroid == true ? 167 : 169,
+      // height: GetPlatform.isAndroid == true ? 167 : 169,
       child: Container(
         margin: const EdgeInsets.only(right: 16),
         child: Column(
@@ -183,28 +186,7 @@ class TicketView extends StatelessWidget {
                   Expanded(
                       child: Padding(
                     padding: const EdgeInsets.all(12.0),
-                    child: LayoutBuilder(
-                      builder:
-                          (BuildContext context, BoxConstraints constraints) {
-                        return Flex(
-                          direction: Axis.horizontal,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          mainAxisSize: MainAxisSize.max,
-                          children: List.generate(
-                              (constraints.constrainWidth() / 15).floor(),
-                              (index) => SizedBox(
-                                    width: 5,
-                                    height: 1,
-                                    child: DecoratedBox(
-                                      decoration: BoxDecoration(
-                                          color: isColor == null
-                                              ? Colors.white
-                                              : Colors.grey.shade300),
-                                    ),
-                                  )),
-                        );
-                      },
-                    ),
+                    child: AppDashLayoutWidget(isColor: true,),
                   )),
                   /* create half circle in the right side of ticket */
                   SizedBox(
@@ -225,9 +207,13 @@ class TicketView extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                   color: isColor == null ? Styles.orangeColor : Colors.white,
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(21),
-                      bottomRight: Radius.circular(21))),
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: isDetail == null
+                          ? Radius.circular(21)
+                          : Radius.circular(0),
+                      bottomRight: isDetail == null
+                          ? Radius.circular(21)
+                          : Radius.circular(0))),
               padding: const EdgeInsets.only(
                   left: 16, right: 16, top: 10, bottom: 16),
               child: Column(
@@ -238,20 +224,164 @@ class TicketView extends StatelessWidget {
                       AppColumn(
                           alignment: CrossAxisAlignment.start,
                           topText: ticket['date'],
-                          bottomText: 'Date'),
+                          bottomText: 'Date',
+                          isColor: true),
                       AppColumn(
                           alignment: CrossAxisAlignment.center,
                           topText: ticket['departure_time'],
-                          bottomText: 'Departure time'),
+                          bottomText: 'Departure time',
+                          isColor: true),
                       AppColumn(
                           alignment: CrossAxisAlignment.end,
                           topText: '${ticket['number']}',
-                          bottomText: 'Number'),
+                          bottomText: 'Number',
+                          isColor: true),
                     ],
                   )
                 ],
               ),
-            )
+            ),
+            if (isDetail != null) ...[
+              Container(
+                decoration: BoxDecoration(
+                  color: isColor == null ? Styles.orangeColor : Colors.white,
+                ),
+                padding: const EdgeInsets.only(
+                    left: 16, right: 16, top: 10, bottom: 16),
+                child: Column(
+                  children: [
+                    Gap(4),
+                    Divider(
+                      color: Colors.grey.shade500,
+                    ),
+                    Gap(4),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        AppColumn(
+                          alignment: CrossAxisAlignment.start,
+                          topText: 'Flutter Dash',
+                          bottomText: 'Passenger',
+                          isColor: true,
+                        ),
+                        AppColumn(
+                            alignment: CrossAxisAlignment.end,
+                            topText: '5221 478566',
+                            bottomText: 'Passport',
+                            isColor: true),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: isColor == null ? Styles.orangeColor : Colors.white,
+                ),
+                padding: const EdgeInsets.only(
+                    left: 16, right: 16, top: 10, bottom: 16),
+                child: Column(
+                  children: [
+                    Gap(4),
+                    AppDashLayoutWidget(isColor: true,),
+                    Gap(10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        AppColumn(
+                          alignment: CrossAxisAlignment.start,
+                          topText: '0055 444 77147',
+                          bottomText: 'Number of E-Ticket',
+                          isColor: true,
+                        ),
+                        AppColumn(
+                            alignment: CrossAxisAlignment.end,
+                            topText: 'B2SG28',
+                            bottomText: 'Booking code',
+                            isColor: true),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: isColor == null ? Styles.orangeColor : Colors.white,
+                ),
+                padding: const EdgeInsets.only(
+                    left: 16, right: 16, top: 10, bottom: 16),
+                child: Column(
+                  children: [
+                    Gap(10),
+                    AppDashLayoutWidget(isColor: true,),
+                    Gap(10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          // crossAxisAlignment: alignment,
+                          children: [
+                            Row(
+                              children: [
+                                Image.asset(
+                                  'assets/images/visa.png',
+                                  scale: 11,
+                                ),
+                                Text(
+                                  ' *** 2462',
+                                  style: Styles.headlineStyle3
+                                      .copyWith(color: Colors.black),
+                                ),
+                              ],
+                            ),
+                            const Gap(5),
+                            Text(
+                              'Payment method',
+                              style: Styles.headlineStyle4,
+                            )
+                          ],
+                        ),
+                        AppColumn(
+                            alignment: CrossAxisAlignment.end,
+                            topText: '\$249.99',
+                            bottomText: 'Price',
+                            isColor: true),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: isColor == null ? Styles.orangeColor : Colors.white,
+                    borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(21),
+                        bottomRight: Radius.circular(21))),
+                padding: const EdgeInsets.only(
+                    left: 16, right: 16, top: 10, bottom: 16),
+                child: Column(
+                  children: [
+                    Gap(4),
+                    Divider(
+                      color: Colors.grey.shade500,
+                    ),
+                    Gap(15),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: BarcodeWidget(
+                        barcode: Barcode.code128(),
+                        data: 'twentiecker@gmail.com',
+                        drawText: false,
+                        color: Styles.textColor,
+                        width: double.infinity,
+                        height: 70,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ]
           ],
         ),
       ),

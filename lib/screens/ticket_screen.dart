@@ -35,6 +35,7 @@ class TicketScreen extends StatelessWidget {
                 child: TicketView(
                   ticket: ticketList[0],
                   isColor: true,
+                  isDetail: true,
                 ),
               ),
             ],

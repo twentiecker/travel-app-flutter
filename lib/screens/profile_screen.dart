@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:my_app/utils/app_layout.dart';
 import 'package:my_app/utils/app_styles.dart';
 import '../widgets/column_widget.dart';
+import '../widgets/dash_layout_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -223,11 +224,9 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Gap(4),
-                  Divider(
-                    color: Colors.grey.shade500,
-                  ),
-                  Gap(4),
+                  Gap(10),
+                  AppDashLayoutWidget(isColor: true,),
+                  Gap(10),
                   /* sevent row */
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -246,11 +245,9 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Gap(4),
-                  Divider(
-                    color: Colors.grey.shade500,
-                  ),
-                  Gap(4),
+                  Gap(10),
+                  AppDashLayoutWidget(isColor: true,),
+                  Gap(10),
                   /* eight row */
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
