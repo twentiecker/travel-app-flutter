@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../utils/app_styles.dart';
@@ -13,16 +12,16 @@ class AppIconText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: Colors.white),
       child: Row(
         children: [
           Icon(
             icon,
-            color: Color(0xFFBFC2df),
+            color: const Color(0xFFBFC2df),
           ),
-          Gap(10),
+          const Gap(10),
           Text(
             text,
             style: Styles.textStyle,

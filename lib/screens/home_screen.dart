@@ -1,9 +1,7 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:my_app/screens/ticket_view.dart';
-import 'package:my_app/utils/app_layout.dart';
 import 'package:my_app/utils/app_styles.dart';
 import '../utils/app_info_list.dart';
 import '../widgets/double_text_widget.dart';
@@ -78,8 +76,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const Gap(40),
-                /* create upcoming flights and view all */
-                AppDoubleTextWidget(
+                /* create upcoming flights and view all with custom widget */
+                const AppDoubleTextWidget(
                   bigText: "Upcoming Flights",
                   smallText: "View All",
                 )
@@ -102,8 +100,8 @@ class HomeScreen extends StatelessWidget {
             /* padding: const EdgeInsets.only(left: 20, top: 40, right: 20), */
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
-              children: [
-                /* create hotels and view all */
+              children: const [
+                /* create hotels and view all with custom widget */
                 AppDoubleTextWidget(
                   bigText: "Hotels",
                   smallText: "View All",

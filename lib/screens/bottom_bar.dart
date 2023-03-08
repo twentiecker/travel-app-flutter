@@ -2,7 +2,9 @@ import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/home_screen.dart';
+import 'package:my_app/screens/profile_screen.dart';
 import 'package:my_app/screens/search_screen.dart';
+import 'package:my_app/screens/ticket_screen.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -16,8 +18,8 @@ class _BottomBarState extends State<BottomBar> {
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const SearchScreen(),
-    const Text('Tickets'),
-    const Text('Profile')
+    const TicketScreen(),
+    const ProfileScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -53,7 +55,7 @@ class _BottomBarState extends State<BottomBar> {
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
-              /* use FluentSystemIcons dependencies for icon */
+            /* use FluentSystemIcons dependencies for icon */
               icon: Icon(FluentSystemIcons.ic_fluent_home_regular),
               activeIcon: Icon(FluentSystemIcons.ic_fluent_home_filled),
               label: 'Home'),

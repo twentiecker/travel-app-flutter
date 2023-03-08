@@ -23,7 +23,7 @@ class AppDoubleTextWidget extends StatelessWidget {
         InkWell(
           onTap: () {
             if (kDebugMode) {
-              print("You tapped view flights");
+              print("You tapped view $bigText");
               print(AppLayout.getScreenHeight());
               print(AppLayout.getScreenWidth());
             }
