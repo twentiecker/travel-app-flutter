@@ -2,7 +2,6 @@ import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get_utils/src/platform/platform.dart';
 import '../utils/app_layout.dart';
 import '../utils/app_styles.dart';
 import '../widgets/column_widget.dart';
@@ -183,9 +182,9 @@ class TicketView extends StatelessWidget {
                     ),
                   ),
                   /* create line cut in the middle of ticket */
-                  Expanded(
+                  const Expanded(
                       child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: EdgeInsets.all(12.0),
                     child: AppDashLayoutWidget(isColor: true,),
                   )),
                   /* create half circle in the right side of ticket */
@@ -209,11 +208,11 @@ class TicketView extends StatelessWidget {
                   color: isColor == null ? Styles.orangeColor : Colors.white,
                   borderRadius: BorderRadius.only(
                       bottomLeft: isDetail == null
-                          ? Radius.circular(21)
-                          : Radius.circular(0),
+                          ? const Radius.circular(21)
+                          : const Radius.circular(0),
                       bottomRight: isDetail == null
-                          ? Radius.circular(21)
-                          : Radius.circular(0))),
+                          ? const Radius.circular(21)
+                          : const Radius.circular(0))),
               padding: const EdgeInsets.only(
                   left: 16, right: 16, top: 10, bottom: 16),
               child: Column(
@@ -225,17 +224,17 @@ class TicketView extends StatelessWidget {
                           alignment: CrossAxisAlignment.start,
                           topText: ticket['date'],
                           bottomText: 'Date',
-                          isColor: true),
+                          isColor: isColor),
                       AppColumn(
                           alignment: CrossAxisAlignment.center,
                           topText: ticket['departure_time'],
                           bottomText: 'Departure time',
-                          isColor: true),
+                          isColor: isColor),
                       AppColumn(
                           alignment: CrossAxisAlignment.end,
                           topText: '${ticket['number']}',
                           bottomText: 'Number',
-                          isColor: true),
+                          isColor: isColor),
                     ],
                   )
                 ],
@@ -250,14 +249,14 @@ class TicketView extends StatelessWidget {
                     left: 16, right: 16, top: 10, bottom: 16),
                 child: Column(
                   children: [
-                    Gap(4),
+                    const Gap(4),
                     Divider(
                       color: Colors.grey.shade500,
                     ),
-                    Gap(4),
+                    const Gap(4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children: const [
                         AppColumn(
                           alignment: CrossAxisAlignment.start,
                           topText: 'Flutter Dash',
@@ -282,12 +281,12 @@ class TicketView extends StatelessWidget {
                     left: 16, right: 16, top: 10, bottom: 16),
                 child: Column(
                   children: [
-                    Gap(4),
-                    AppDashLayoutWidget(isColor: true,),
-                    Gap(10),
+                    const Gap(4),
+                    const AppDashLayoutWidget(isColor: true,),
+                    const Gap(10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children: const [
                         AppColumn(
                           alignment: CrossAxisAlignment.start,
                           topText: '0055 444 77147',
@@ -312,9 +311,9 @@ class TicketView extends StatelessWidget {
                     left: 16, right: 16, top: 10, bottom: 16),
                 child: Column(
                   children: [
-                    Gap(10),
-                    AppDashLayoutWidget(isColor: true,),
-                    Gap(10),
+                    const Gap(10),
+                    const AppDashLayoutWidget(isColor: true,),
+                    const Gap(10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -342,7 +341,7 @@ class TicketView extends StatelessWidget {
                             )
                           ],
                         ),
-                        AppColumn(
+                        const AppColumn(
                             alignment: CrossAxisAlignment.end,
                             topText: '\$249.99',
                             bottomText: 'Price',
@@ -362,11 +361,11 @@ class TicketView extends StatelessWidget {
                     left: 16, right: 16, top: 10, bottom: 16),
                 child: Column(
                   children: [
-                    Gap(4),
+                    const Gap(4),
                     Divider(
                       color: Colors.grey.shade500,
                     ),
-                    Gap(15),
+                    const Gap(15),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: BarcodeWidget(
